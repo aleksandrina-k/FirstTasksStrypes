@@ -1,0 +1,1 @@
+Find s perfect score if it's possible
