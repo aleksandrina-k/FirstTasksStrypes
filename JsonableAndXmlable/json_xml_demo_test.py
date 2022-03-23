@@ -7,7 +7,6 @@ class TestJsonXml(unittest.TestCase):
     def setUp(self):
         self.panda = Panda('name', 1)
         self.person = Person('firstname', 15, ['aaa', 'bbb', self.panda], {}, self.panda)
-        self.panda_xml_string = '<Panda><name>Georgi</name><age>1</age></Panda>'
         self.panda_json_string = """{
     "dict": {
         "name": "ivcho",
@@ -15,7 +14,6 @@ class TestJsonXml(unittest.TestCase):
     },
     "type": "Panda"
 }"""
-        self.person_xml_string = '<Person><first_name>Georgi</first_name><last_name>Georgiev</last_name><age>25</age></Person>'
         self.person_json_string = """{
     "dict": {
         "name": "joro",
@@ -89,16 +87,5 @@ class TestJsonXml(unittest.TestCase):
         self.assertIsInstance(self.panda.to_json(), str)
         self.assertIsInstance(self.person.to_json(), str)
 
-    def test_from_xml(self):
-        self.assertIsInstance(Panda.from_xml(self.panda_xml_string), Panda)
-        self.assertIsInstance(Person.from_xml(self.person_xml_string), Person)
-        panda = Panda.from_xml(self.panda_xml_string)
-        self.assertEqual(panda, self.panda)
-
-    def test_to_xml(self):
-        self.assertIsInstance(self.panda.to_xml(), str)
-        self.assertIsInstance(self.person.to_xml(), str)
-
     def test_output(self):
-        self.assertRaises(ValueError, Panda.from_xml, self.person_xml_string)
         self.assertRaises(ValueError, Person.from_json, self.panda_json_string)

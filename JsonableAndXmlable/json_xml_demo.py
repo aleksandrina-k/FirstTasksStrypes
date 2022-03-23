@@ -126,38 +126,6 @@ class Jsonable:
         return eval(obj_class)(*param_values_list)
 
 
-# class Xmlable:
-#     def to_xml(self):
-#         xml_list = [f'<{self.__class__.__name__}>']
-#         for param, value in self.__dict__.items():
-#             element = '<' + param + '>' + str(value) + '</' + param + '>'
-#             xml_list.append(element)
-#
-#         xml_list.append(f'</{self.__class__.__name__}>')
-#
-#         return ''.join(xml_list)
-#
-#     @classmethod
-#     def from_xml(cls, xml_string):
-#         xml_string = xml_string.replace('<', ' ')
-#         xml_string = xml_string.replace('>', ' ')
-#         print(xml_string)
-#         xml_list = xml_string.split('  ')
-#
-#         arg_values = []
-#         for attrib in xml_list[1:-1]:
-#             arg_values.append(attrib.split(' ')[1])
-#
-#         # print(arg_values)
-#         try:
-#             new_object = eval(cls.__name__)(*arg_values)
-#             return new_object
-#         except TypeError:
-#             raise ValueError
-#         except Exception:
-#             print('Error')
-
-
 class Panda(Jsonable):
     def __init__(self, name, age):
         self.name = name
